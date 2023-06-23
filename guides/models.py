@@ -8,6 +8,17 @@ class Guide(models.Model):
 
     class Meta:
         ordering = ['pk']
+        verbose_name = "справочник"
+        verbose_name_plural = "справочники"
+
+    # @property
+    # def short_description(self):
+    #     if len(self.description) < 50:
+    #         return self.description
+    #     return f"{self.description[:50]}..."
+
+    def __str__(self):
+        return f"Справочник({self.code}: {self.title[:15]}...)"
 
 
 class Version(models.Model):
@@ -24,10 +35,13 @@ class Version(models.Model):
             # Для одного справочника - только одна версия начинается с даты since_date
             ["guide_id", "since_date"],
         ]
+        verbose_name = "версия справочник"
+        verbose_name_plural = "версии справочников"
 
 
 class Element(models.Model):
-    version_id = models.ForeignKey(Version, on_delete=models.CASCADE, related_name='elements')
+    version_id = models.ForeignKey(Version, on_delete=models.CASCADE, related_name='elements',
+                                   verbose_name='идентификатор версии')
     code = models.CharField(max_length=100, verbose_name='код элемента')
     value = models.CharField(max_length=300, verbose_name='значение элемента')
 
@@ -35,5 +49,5 @@ class Element(models.Model):
         ordering = ['pk']
         # Для одной версии - один уникальный код элемента
         unique_together = ["version_id", "code"]
-
-
+        verbose_name = "элемент справочника"
+        verbose_name_plural = "элементы справочников"
