@@ -33,7 +33,7 @@ class GuideListTest(TestCase):
         # выдает одинаковое кол-во справочников
         self.assertEqual(len(returned_guides), len(guides_in_db))
 
-        # проверка правильности выводы справочников
+        # проверка правильности вывода справочников
         for i in range(len(returned_guides)):
             with self.subTest(i=i + 1):
                 self.assertEqual(returned_guides[i]['id'], guides_in_db[i].id)
@@ -49,7 +49,7 @@ class GuideListTest(TestCase):
         # выдает одинаковое кол-во справочников
         self.assertEqual(len(returned_guides), len(guides_in_db))
 
-        # проверка правильности выводы справочников
+        # проверка правильности вывода справочников
         for i in range(len(returned_guides)):
             with self.subTest(i=i + 1):
                 self.assertEqual(returned_guides[i]['id'], guides_in_db[i].id)
@@ -71,13 +71,13 @@ def init_db():
                            since_date=datetime.strptime('2023-03-01', '%Y-%m-%d'))
 
     element_list_1 = [Element(version_id=version_1, code=f'{i}', value=value)
-                      for i, value in enumerate(['value_1', 'value_2'])
+                      for i, value in enumerate(['value_1.1', 'value_1.2'], start=1)
                       ]
 
     Element.objects.bulk_create(element_list_1)
 
     element_list_2 = [Element(version_id=version_2, code=f'{i}', value=value)
-                      for i, value in enumerate(['value_1', 'value_2', 'value_3'])
+                      for i, value in enumerate(['value_1', 'value_2', 'value_3'], start=1)
                       ]
 
     Element.objects.bulk_create(element_list_2)
