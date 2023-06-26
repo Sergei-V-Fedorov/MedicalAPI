@@ -18,6 +18,17 @@ JSON.
 pip install -r requirements.txt
 ```
 
+### Создание учетной записи администратора
+```commandline
+python manage.py migrate
+```
+```commandline
+python manage.py createsuperuser
+```
+ - Login: admin
+ - password: admin
+ - email: -
+
 ### Создание базы данных
 ```commandline
 python manage.py makemigrations
