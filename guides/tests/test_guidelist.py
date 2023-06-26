@@ -1,3 +1,8 @@
+"""
+Содержит тесты для представления GuideList.
+
+Проверка функционала представления GuideList.
+"""
 from datetime import datetime
 from django.test import TestCase, tag
 from django.urls import reverse
@@ -15,12 +20,12 @@ class GuideListTest(TestCase):
         init_db()
 
     def test_url_available_by_name(self):
-        """Тест на доступность страницы по name"""
+        """Тест на доступность страницы по name."""
         response = self.client.get(self.url_name)
         self.assertEqual(response.status_code, 200)
 
     def test_url_exists(self):
-        """Тест на доступность страницы по url"""
+        """Тест на доступность страницы по url."""
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
 
@@ -57,6 +62,7 @@ class GuideListTest(TestCase):
 
 
 def init_db():
+    """Инициирует тестовую БД начальными значениями."""
     guide_1 = Guide.objects.create(code='1', name='guide_1', description='description_1')
     guide_2 = Guide.objects.create(code='2', name='guide_2', description='description_2')
 

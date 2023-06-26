@@ -1,3 +1,9 @@
+"""
+Содержит тесты для представления GuideElementCheckOut.
+
+Проверка функционала представления GuideElementCheckOut.
+"""
+
 from django.shortcuts import get_object_or_404
 from django.test import TestCase, tag
 from django.urls import reverse
@@ -38,8 +44,7 @@ class GuideElementCheckOutTest(TestCase):
         url = f"{self.url}?code={code}&value={value}"
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        result = response.data['Element']
-        self.assertEqual(result, 'Существует')
+        self.assertEqual(response.data, 'Существует')
 
     def test_element_doesnt_exist_in_current_guide_version(self):
         """Тест на проверку отсутствия элемента с заданным кодом и значением в текущей версии справочника."""
@@ -48,8 +53,7 @@ class GuideElementCheckOutTest(TestCase):
         url = f"{self.url}?code={code}&value={value}"
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        result = response.data['Element']
-        self.assertEqual(result, 'Не существует')
+        self.assertEqual(response.data, 'Не существует')
 
     def test_element_exists_in_given_guide_version(self):
         """Тест на проверку существования элемента с заданным кодом и значением в заданной версии справочника."""
@@ -60,8 +64,7 @@ class GuideElementCheckOutTest(TestCase):
         url = f"{self.url}?code={code}&value={value}&version={self.given_version}"
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        result = response.data['Element']
-        self.assertEqual(result, 'Существует')
+        self.assertEqual(response.data, 'Существует')
 
     def test_element_doesnt_exist_in_given_guide_version(self):
         """Тест на проверку отсутствия элемента с заданным кодом и значением в заданной версии справочника."""
@@ -70,5 +73,4 @@ class GuideElementCheckOutTest(TestCase):
         url = f"{self.url}?code={code}&value={value}&version={self.given_version}"
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
-        result = response.data['Element']
-        self.assertEqual(result, 'Не существует')
+        self.assertEqual(response.data, 'Не существует')

@@ -1,3 +1,8 @@
+"""
+Содержит тесты для представления GuideElementList.
+
+Проверка функционала представления GuideElementList.
+"""
 from django.shortcuts import get_object_or_404
 from django.test import TestCase, tag
 from django.urls import reverse
@@ -21,12 +26,12 @@ class GuideElementListTest(TestCase):
         cls.url_name = reverse('medicalapi:elements', args=[cls.pk])
 
     def test_url_available_by_name(self):
-        """Тест на доступность страницы по name"""
+        """Тест на доступность страницы по name."""
         response = self.client.get(self.url_name)
         self.assertEqual(response.status_code, 200)
 
     def test_url_exists(self):
-        """Тест на доступность страницы по url"""
+        """Тест на доступность страницы по url."""
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
 
