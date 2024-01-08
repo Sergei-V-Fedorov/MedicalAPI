@@ -1,3 +1,5 @@
 *.sqlite3
-__pycache__/
+*__pycache__/
 migrations/
+.idea/
+medicalapi/__pycache__/
